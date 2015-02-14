@@ -1,0 +1,8 @@
+{
+    "name": "DuoD",
+    "description": "Duo asset management integration.",
+    "copyright": "Copyright © 2015, Taylor Lawson",
+    "authors": ["Taylor \"Nekroze\" Lawson <tlawson@nekroze.com>"],
+    "license": "MIT",
+    "targetType": "library",
+}
