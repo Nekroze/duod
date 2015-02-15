@@ -24,7 +24,7 @@ string uglify (string source, bool js=true) {
     return getOutput (command, source);
 }
 
-string getStaticPath (string path, string staticdir="public") {
+string getAssetPath (string path, string staticdir="public") {
     return buildPath(staticdir, path.chompPrefix("/"));
 }
 
@@ -34,7 +34,7 @@ string compile (string source, bool js=true, string staticdir="public", bool min
 }
 
 string build (string sourcePath, string staticPath, string staticdir="public") {
-    string path = getStaticPath (staticPath, staticdir);
+    string path = getAssetPath (staticPath, staticdir);
 
     version (unittest) {  // Build assets only when unittesting
         enforce (sourcePath.isValidFilename, "Asset source not found: " ~ sourcePath);
