@@ -32,3 +32,9 @@ string getOutput (string command, string input="") {
         output ~= line;
     return output.data;
 }
+unittest {
+    assert (getOutput ("echo test") == "test");
+}
+unittest {
+    assert (getOutput ("awk '{print tolower($0)}'", "TEXT") == "text");
+}
