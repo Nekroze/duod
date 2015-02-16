@@ -51,6 +51,12 @@ string uglify (string source, bool js=true) {
 string getAssetPath (string path, string staticdir="public") {
     return buildPath(staticdir, path.chompPrefix("/"));
 }
+/// This example shows the conversion of a URL to the location of the projects asset on disk.
+unittest {
+    string url = "nekroze.com/index.js";
+    string asset = url.chompPrefix("nekroze.com");
+    assert (getAssetPath (asset) == "public/index.js");
+}
 /++ Compile the given asset source with duo and optionally minify/uglify the output.
  +  Params:
  +      source    =     Source code to pass to compile.
