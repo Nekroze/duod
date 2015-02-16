@@ -35,6 +35,7 @@ string getOutput (string command, string input="") {
 unittest {
     assert (getOutput ("echo test") == "test");
 }
+/// A simple example for giving a program input programatically and returning the result.
 unittest {
     assert (getOutput ("awk '{print tolower($0)}'", "TEXT") == "text");
 }
