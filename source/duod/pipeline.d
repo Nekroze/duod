@@ -33,6 +33,6 @@ template Asset (string sourcePath) {
     assert(Asset!testAsset.require == "<script type=\"text/javascript\" src=\"/duod-pipeline.js\"></script>");
     int count;
     foreach (string a; registeredAssets)
-        count += 1;
+        if (a == testAsset) count += 1;
     assert(count == 1);
 }
