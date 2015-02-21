@@ -1,0 +1,12 @@
+{
+    "name": "DuoD",
+    "description": "Duo asset management integration.",
+    "homepage": "https://projects.nekroze.com/projects/duod",
+    "copyright": "Copyright © 2015, Taylor Lawson",
+    "authors": ["Taylor \"Nekroze\" Lawson <tlawson@nekroze.com>"],
+    "license": "MIT",
+    "targetType": "library",
+    "dependencies": {
+        "tested": "~>0.9.4"
+    }
+}
