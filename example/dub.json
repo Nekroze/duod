@@ -1,0 +1,11 @@
+{
+    "name": "DuoD-Example",
+    "description": "Example use of vibe.d with a DuoD frontend pipeline.",
+    "copyright": "Copyright © 2015, Taylor Lawson",
+    "authors": ["Taylor \"Nekroze\" Lawson"],
+    "dependencies": {
+        "vibe-d": "~>0.7",
+        "duod": {"path": ".."}
+    },
+    "versions": ["VibeDefaultMain"]
+}

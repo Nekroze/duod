@@ -1,0 +1,10 @@
+doctype html
+html
+    head
+        - import duod;
+        title Hello, Duo!
+        - Asset!"assets/example.js".require;
+        - Asset!"assets/example.css".require;
+        body
+            h1 DuoD Example
+            p Integrating asset generation with vibe.d, now thats cool!.
