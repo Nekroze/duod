@@ -6,4 +6,7 @@
     "authors": ["Taylor \"Nekroze\" Lawson <tlawson@nekroze.com>"],
     "license": "MIT",
     "targetType": "library",
+    "dependencies": {
+        "tested": "~>0.9.4"
+    }
 }

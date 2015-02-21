@@ -9,4 +9,4 @@
  +      v0.0.0 - Fleshing out basic implementations and API.
  +/
 module duod;
-public import duod.assets : require;
+public import duod.pipeline : Asset;
