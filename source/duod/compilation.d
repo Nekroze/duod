@@ -50,7 +50,7 @@ string uglify (string source, bool js=true) {
  +/
 string compile (string source, bool js=true, string staticdir="public", bool min=true) {
     string compiled = duo (source, js, staticdir);
-    return min ? uglify (compiled, js) : compiled;
+    return min && !js ? uglify (compiled, js) : compiled;
 }
 /++ Much the same as `compile` however `build` takes and outputs files.
  +  Params:
