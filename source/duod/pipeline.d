@@ -1,11 +1,7 @@
 module duod.pipeline;
 
-import core.atomic : atomicOp;
-import std.path : buildPath, baseName, extension;
 import std.string : format, toLower;
-version (unittest)
-    import std.algorithm : count;
-
+import std.path : buildPath, baseName, extension;
 
 shared string[] registeredAssets;
 shared string staticDir = "public";
