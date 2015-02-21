@@ -26,7 +26,7 @@ template Asset (string sourcePath) {
 
         registeredAssets ~= sourcePath;
     }
-} shared unittest {
+} unittest {
     enum testAsset = "unittests/duod-pipeline.js";
     assert(Asset!testAsset.webPath == "/duod-pipeline.js");
     assert(Asset!testAsset.staticPath == "public/duod-pipeline.js");
