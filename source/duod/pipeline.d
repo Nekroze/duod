@@ -32,14 +32,19 @@ template Asset (string sourcePath) {
     static immutable string staticPath;
     /// HTML required to include the compiled asset.
     static immutable string require;
-
     /// At launch constructor, constructs paths, html, and (if required) asset.
     static this () {
         webPath = buildPath(webStaticDir, baseName(sourcePath));
         staticPath = buildPath (staticDir, baseName(sourcePath));
-        require = extension(staticPath).toLower() == "css" ?
-            format ("<link rel=\"stylesheet\" type=\"text/css\" href=\"%s\">", webPath) :
-            format ("<script type=\"text/javascript\" src=\"%s\"></script>", webPath);
+        if (extension(staticPath).toLower() == "css") {
+            require = format (
+                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"%s\">",
+                    webPath);
+        } else {
+            require = format (
+                    "<script type=\"text/javascript\" src=\"%s\"></script>",
+                    webPath);
+        }
 
         if (Runtime.args.canFind (buildSwitch)) {
             build (sourcePath, staticPath, staticDir);
