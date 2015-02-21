@@ -13,9 +13,9 @@ shared string webStaticDir = "/";
 
 
 template Asset (string sourcePath) {
-    shared static string webPath;
-    shared static string staticPath;
-    shared static string require;
+    shared static immutable string webPath;
+    shared static immutable string staticPath;
+    shared static immutable string require;
 
     shared static this () {
         webPath = buildPath(webStaticDir, baseName(sourcePath));
@@ -25,7 +25,6 @@ template Asset (string sourcePath) {
             format ("<script type=\"text/javascript\" src=\"%s\"></script>", webPath);
 
         registeredAssets ~= sourcePath;
-        //atomicOp!"~="(registeredAssets, sourcePath);
     }
 } unittest {
     assert(Asset!"assets/index.js".webPath == "/index.js");
