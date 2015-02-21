@@ -31,17 +31,17 @@ template Asset (string sourcePath) {
     /// Path to the assets source file.
     static immutable string staticPath;
     /// HTML required to include the compiled asset.
-    static immutable string require;
+    static immutable string html;
     /// At launch constructor, constructs paths, html, and (if required) asset.
     static this () {
         webPath = buildPath(webStaticDir, baseName(sourcePath));
         staticPath = buildPath (staticDir, baseName(sourcePath));
         if (extension(staticPath).toLower() == "css") {
-            require = format (
+            html = format (
                     "<link rel=\"stylesheet\" type=\"text/css\" href=\"%s\">",
                     webPath);
         } else {
-            require = format (
+            html = format (
                     "<script type=\"text/javascript\" src=\"%s\"></script>",
                     webPath);
         }
@@ -49,6 +49,10 @@ template Asset (string sourcePath) {
         if (Runtime.args.canFind (buildSwitch)) {
             build (sourcePath, staticPath, staticDir);
         }
+    }
+
+    string require () {
+        return html;
     }
 } unittest {
     enum testAsset = "unittests/duod-pipeline.js";

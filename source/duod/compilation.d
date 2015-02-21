@@ -5,8 +5,8 @@ module duod.compilation;
 import duod.utilities;
 import std.exception : enforce;
 import std.string : format, chompPrefix, toLower;
-import std.file : readText, write, getSize;
-import std.path : buildPath, extension, isValidFilename;
+import std.file : readText, write, getSize, mkdirRecurse, dirName;
+import std.path : buildPath, extension;
 import std.stdio : writeln;
 /++ Build a css or js asset based on the given string. This exposes the core
  +  functionality of the duo frontend package manager and as such, may pull in
@@ -21,7 +21,7 @@ import std.stdio : writeln;
 string duo (string source, bool js=true, string staticdir="public") {
     enforce (hasDuo, "Duo command not available, please install");
 
-    string command = format ("duo -o %s -t %s -c -S",
+    string command = format ("duo -o %s -t %s -c -S -q",
             staticdir, js ? "js" : "css");
     return getOutput (command, source);
 }
@@ -59,11 +59,12 @@ string compile (string source, bool js=true, string staticdir="public", bool min
  +      staticdir  =    Your statically served asset directory. Default is `public/`
  +/
 void build (string sourcePath, string staticPath, string staticdir="public") {
-    enforce (sourcePath.isValidFilename, "Asset source not found: " ~ sourcePath);
-
     string source = compile(
             readText (sourcePath),
             extension(staticPath).toLower() == "js", staticdir, hasYuglify);
+    staticPath.dirName.mkdirRecurse;
+
     write (staticPath, source);
-    writeln ("Compiled asset %s to %s which is %s bytes.", sourcePath, staticPath, getSize(staticPath));
+    writeln (format ("Compiled asset %s to %s which is %s bytes.",
+                sourcePath, staticPath, getSize(staticPath)));
 }
