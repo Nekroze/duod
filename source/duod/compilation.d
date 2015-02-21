@@ -1,7 +1,7 @@
-/++ This module implements the core functionality of this project.
- +  Provides simple commands to generate assets when needed for usage.
+/++ This module implements the compilation functionality.
+ +  Provides commands to compile and minify assets from their source with duod.
  +/
-module duod.assets;
+module duod.compilation;
 import duod.utilities;
 import std.exception : enforce;
 import std.string : format, chompPrefix, toLower;
