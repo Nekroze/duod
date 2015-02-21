@@ -61,7 +61,7 @@ string compile (string source, bool js=true, string staticdir="public", bool min
 void build (string sourcePath, string staticPath, string staticdir="public") {
     string source = compile(
             readText (sourcePath),
-            extension(staticPath).toLower() == "js", staticdir, hasYuglify);
+            extension(staticPath).toLower() == ".js", staticdir, hasYuglify);
     staticPath.dirName.mkdirRecurse;
 
     write (staticPath, source);

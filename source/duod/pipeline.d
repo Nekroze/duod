@@ -50,7 +50,6 @@ template Asset (string sourcePath) {
             build (sourcePath, staticPath, staticDir);
         }
     }
-
     string require () {
         return html;
     }
