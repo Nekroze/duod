@@ -1,7 +1,7 @@
 module duod.pipeline;
 import duod.compilation;
 
-import std.runtime : runtime;
+import core.runtime : Runtime;
 import std.string : format, toLower;
 import std.path : buildPath, baseName, extension;
 import std.algorithm : canFind;
@@ -28,8 +28,8 @@ template Asset (string sourcePath) {
             format ("<link rel=\"stylesheet\" type=\"text/css\" href=\"%s\">", webPath) :
             format ("<script type=\"text/javascript\" src=\"%s\"></script>", webPath);
 
-        if (runtime.args.canFind (buildSwitch)) {
-            build (sourcePath, staticPath, staticDir)
+        if (Runtime.args.canFind (buildSwitch)) {
+            build (sourcePath, staticPath, staticDir);
         }
     }
 } unittest {
