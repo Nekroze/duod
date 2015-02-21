@@ -4,7 +4,7 @@ import core.atomic : atomicOp;
 import std.path : buildPath, baseName, extension;
 import std.string : format, toLower;
 version (unittest)
-    import std.algorithm : canFind;
+    import std.algorithm : count;
 
 
 shared string[] registeredAssets;
@@ -26,9 +26,13 @@ template Asset (string sourcePath) {
 
         registeredAssets ~= sourcePath;
     }
-} unittest {
-    assert(Asset!"assets/index.js".webPath == "/index.js");
-    assert(Asset!"assets/index.js".staticPath == "public/index.js");
-    assert(Asset!"assets/index.js".require == "<script type=\"text/javascript\" src=\"/index.js\"></script>");
-    assert(registeredAssets.length == 1);
+} shared unittest {
+    enum testAsset = "unittests/duod-pipeline.js";
+    assert(Asset!testAsset.webPath == "/duod-pipeline.js");
+    assert(Asset!testAsset.staticPath == "public/duod-pipeline.js");
+    assert(Asset!testAsset.require == "<script type=\"text/javascript\" src=\"/duod-pipeline.js\"></script>");
+    int count;
+    foreach (string a; registeredAssets)
+        count += 1;
+    assert(count == 1);
 }
