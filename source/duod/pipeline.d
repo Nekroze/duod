@@ -1,8 +1,12 @@
 module duod.pipeline;
+import duod.compilation;
 
+import std.runtime : runtime;
 import std.string : format, toLower;
 import std.path : buildPath, baseName, extension;
+import std.algorithm : canFind;
 
+enum buildSwitch = "--duod-build";
 shared string[] registeredAssets;
 shared string staticDir = "public";
 shared string webStaticDir = "/";
@@ -14,13 +18,19 @@ template Asset (string sourcePath) {
     shared static immutable string require;
 
     shared static this () {
+        registeredAssets ~= sourcePath;
+    }
+
+    static this () {
         webPath = buildPath(webStaticDir, baseName(sourcePath));
         staticPath = buildPath (staticDir, baseName(sourcePath));
         require = extension(staticPath).toLower() == "css" ?
             format ("<link rel=\"stylesheet\" type=\"text/css\" href=\"%s\">", webPath) :
             format ("<script type=\"text/javascript\" src=\"%s\"></script>", webPath);
 
-        registeredAssets ~= sourcePath;
+        if (runtime.args.canFind (buildSwitch)) {
+            build (sourcePath, staticPath, staticDir)
+        }
     }
 } unittest {
     enum testAsset = "unittests/duod-pipeline.js";
