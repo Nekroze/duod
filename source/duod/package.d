@@ -6,6 +6,7 @@
  + License: MIT
  + Copyright: 2015, Taylor Lawson
  + History:
+ +      v0.0.0 - Implemented a template based asset pipeline.
  +      v0.0.0 - Fleshing out basic implementations and API.
  +/
 module duod;
