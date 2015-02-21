@@ -13,9 +13,9 @@ shared string webStaticDir = "/";
 
 
 template Asset (string sourcePath) {
-    static immutable string webPath;
-    static immutable string staticPath;
-    static immutable string require;
+    shared static string webPath;
+    shared static string staticPath;
+    shared static string require;
 
     shared static this () {
         webPath = buildPath(webStaticDir, baseName(sourcePath));
