@@ -42,7 +42,5 @@ template Require (const string sourcePath) {
     }
 } unittest {
     enum testAsset = "unittests/duod-pipeline.js";
-    assert(Require!testAsset.webPath == "/duod-pipeline.js");
-    assert(Require!testAsset.staticPath == "public/duod-pipeline.js");
-    assert(Require!testAsset.Require == "output__.put(\"<script type=\\\"text/javascript\\\" src=\\\"/duod-pipeline.js\\\"></script>\n\");");
+    assert(Require!testAsset == "output__.put(\"\\n<script type=\\\"text/javascript\\\" src=\\\"/duod-pipeline.js\\\"></script>\");");
 }
