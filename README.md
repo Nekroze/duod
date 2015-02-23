@@ -13,17 +13,22 @@ in your code or even in a [Vibe.d](https://vibed.org) diet template!.
 Usage
 =====
 
-Once *DuoD* is imported (`import duod;`) you can, simultaniously, register
-an asset to be built when the `--duod-build` switch is given to your
-application, as well as write the code to use that asset like so:
+Once *DuoD* is imported (`import duod;`) you can setup an asset to be
+built when the `--duod-build` switch is given to your application:
 
 ``` D
-    Asset!"assets/index.css".require;
+    Require!"assets/index.css";
 ```
 
-This will return the HTML code to use the resource when it is built which
-aslo allows this to be used in a deit template.
+But what is really fun is using the above command in a diet template
+with a mixin.
 
+``` jade
+    - mixin(Require!"assets/index.css");
+```
+
+This is all that is required to provide the same build functionality as
+well as placing the HTML to use the asset in the rendered template output!
 
 Example
 =======
