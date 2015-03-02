@@ -1,1 +1,2 @@
-var bootstrap = require('twbs/bootstrap@v3.2.0:dist/js/bootstrap.js');
+require('components/jquery@2.1.3');
+require('components/bootstrap@3.3.2');
