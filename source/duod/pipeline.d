@@ -56,7 +56,7 @@ template RequireMin (const string sourcePath) {
     /// Path to the assets source file.
     const string staticPath = buildPath (staticDir, baseName(sourcePath));
     /// This is the mixin code for diet templates.
-    const string Require = sourcePath[$-3..$] == "css" ?
+    const string RequireMin = sourcePath[$-3..$] == "css" ?
         "output__.put(\"\\n<link rel=\\\"stylesheet\\\" type=\\\"text/css\\\" href=\\\""~webPath~"\\\">\");"
         :
         "output__.put(\"\\n<script type=\\\"text/javascript\\\" src=\\\""~webPath~"\\\"></script>\");";

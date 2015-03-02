@@ -7,4 +7,4 @@ html
             h1 DuoD Example
             p Integrating asset generation with vibe.d, now thats cool!.
             - mixin(Require!"assets/example.js");
-            - mixin(Require!"assets/example.css");
+            - mixin(RequireMin!"assets/example.css");
