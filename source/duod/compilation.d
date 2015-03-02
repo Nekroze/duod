@@ -38,7 +38,10 @@ string uglify (string source, bool js=true) {
 
     string command = format ("yuglify --terminal --type %s",
             js ? "js" : "css");
-    return getOutput (command, source);
+    try
+        return getOutput (command, source);
+    catch (Object o)
+        return source;
 }
 /++ Compile the given asset source with duo and optionally minify/uglify the output.
  +  Params:
