@@ -1,5 +1,5 @@
 {
-    "name": "DuoD-Example",
+    "name": "duod-example",
     "description": "Example use of vibe.d with a DuoD frontend pipeline.",
     "copyright": "Copyright © 2015, Taylor Lawson",
     "authors": ["Taylor \"Nekroze\" Lawson"],
@@ -7,5 +7,8 @@
         "vibe-d": "~>0.7",
         "duod": {"path": ".."}
     },
+    "postBuildCommands": [
+        "./duod-example --duod-build"
+    ],
     "versions": ["VibeDefaultMain"]
 }
