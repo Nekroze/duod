@@ -37,7 +37,32 @@ template Require (const string sourcePath) {
         "output__.put(\"\\n<script type=\\\"text/javascript\\\" src=\\\""~webPath~"\\\"></script>\");";
     shared static this () {
         if (Runtime.args.canFind (buildSwitch)) {
-            build (sourcePath, staticPath, staticDir);
+            build (sourcePath, staticPath, staticDir, false);
+        }
+    }
+} unittest {
+    enum testAsset = "unittests/duod-pipeline.js";
+    assert(Require!testAsset == "output__.put(\"\\n<script type=\\\"text/javascript\\\" src=\\\"/duod-pipeline.js\\\"></script>\");");
+}
+/++ This is the same as `Require` however it also minifies the output.
+ +
+ +  Param:
+ +      sourcePath =    The path to an assets source, relative to the
+ +                      compiled binary.
+ +/
+template RequireMin (const string sourcePath) {
+    /// URL path to this asset from the web.
+    const string webPath = buildPath (webStaticDir, baseName(sourcePath));
+    /// Path to the assets source file.
+    const string staticPath = buildPath (staticDir, baseName(sourcePath));
+    /// This is the mixin code for diet templates.
+    const string RequireMin = sourcePath[$-3..$] == "css" ?
+        "output__.put(\"\\n<link rel=\\\"stylesheet\\\" type=\\\"text/css\\\" href=\\\""~webPath~"\\\">\");"
+        :
+        "output__.put(\"\\n<script type=\\\"text/javascript\\\" src=\\\""~webPath~"\\\"></script>\");";
+    shared static this () {
+        if (Runtime.args.canFind (buildSwitch)) {
+            build (sourcePath, staticPath, staticDir, true);
         }
     }
 } unittest {

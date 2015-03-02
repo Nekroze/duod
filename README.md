@@ -20,6 +20,13 @@ built when the `--duod-build` switch is given to your application:
     Require!"assets/index.css";
 ```
 
+Or if you would like the outputed asset to be minified with
+[Yuglify](https://github.com/yui/yuglify):
+
+``` D
+    RequireMin!"assets/index.css";
+```
+
 But what is really fun is using the above command in a diet template
 with a mixin.
 

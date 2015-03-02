@@ -50,18 +50,19 @@ string uglify (string source, bool js=true) {
  +/
 string compile (string source, bool js=true, string staticdir="public", bool min=true) {
     string compiled = duo (source, js, staticdir);
-    return min && !js ? uglify (compiled, js) : compiled;
+    return min ? uglify (compiled, js) : compiled;
 }
 /++ Much the same as `compile` however `build` takes and outputs files.
  +  Params:
  +      sourcePath =    Path to asset source to be built.
  +      staticPath =    Path to the compile assets output destination.
  +      staticdir  =    Your statically served asset directory. Default is `public/`
+ +      min       =     If true the output will be minified/uglifies with yuglify.
  +/
-void build (string sourcePath, string staticPath, string staticdir="public") {
+void build (string sourcePath, string staticPath, string staticdir="public", bool min=true) {
     string source = compile(
             readText (sourcePath),
-            extension(staticPath).toLower() == ".js", staticdir, hasYuglify);
+            extension(staticPath).toLower() == ".js", staticdir, hasYuglify && min);
     staticPath.dirName.mkdirRecurse;
 
     write (staticPath, source);

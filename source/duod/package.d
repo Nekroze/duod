@@ -6,9 +6,10 @@
  + License: MIT
  + Copyright: 2015, Taylor Lawson
  + History:
+ +      v1.2.0 - Added RequireMin template for explicit minification.
  +      v1.1.0 - Corrected issue with diet template integration.
  +      v1.0.0 - Implemented a template based asset pipeline.
  +      v0.0.0 - Fleshing out basic implementations and API.
  +/
 module duod;
-public import duod.pipeline : Require;
+public import duod.pipeline : Require, RequireMin;
